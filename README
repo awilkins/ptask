@@ -1,0 +1,105 @@
+ptask README
+==============
+
++ptask+ is a GTK+ graphical user interface for managing tasks.
+
+It is based on link:http://taskwarrior.org[taskwarrior], a well-known and robust command line
+tasks manager.
+
+Unlike +taskwarrior+, it is possible to associate a note (long
+description) to each task.
+
++ptask+ is licensed under the GPLv2 terms and should compile on any
+modern GNU/Linux distribution.
+
+Installation on Ubuntu
+----------------------
+
+To install +ptask+ on Ubuntu and derivates, the easiest way is to use the dedicated PPA:
+-------------------------------------
+sudo apt-add-repository ppa:jfi/ptask
+sudo apt-get update
+sudo apt-get install ptask
+-------------------------------------
+
+The PPA +ppa:jfi/ptask+ contains the binary package of the last
+released version of +ptask+ for the last released version of Ubuntu.
+
+The PPA +ppa:jfi/ptask-daily+ contains the binary package of the last
+development snapshot. It should only be used for testing purpose.
+
+Installation from source archive
+--------------------------------
+
++ptask+ can be compiled and installed on any modern GNU/Linux
+distribution.
+
+Prerequisites
+~~~~~~~~~~~~~
+
+The compilation of +ptask+ requires:
+
+ * asciidoc
+ * autotools
+ * cppcheck (optional, static source checker)
+ * gcc
+ * help2man
+ * library gtk3 >= 3.12
+ * library json-c
+ * make
+
+For Ubuntu 12.10:
+-------------------------------------------------------------------------
+sudo apt-get install autoconf automake asciidoc cppcheck gcc gettext autopoint help2man libgtk-3-dev libjson0-dev make perl
+-------------------------------------------------------------------------
+
+Download sources
+~~~~~~~~~~~~~~~~
+
+Download a source tarballs of a release and extracts its content:
+-------------------------------
+mkdir TMP_DIR
+cd TMP_DIR
+wget http://wpitchoune.net/ptask/files/ptask-last.tar.gz
+tar -xzvf ptask-last.tar.gz
+cd ptask-*
+-------------------------------
+
+Alternatively, you can get the last development snapshot of the
+sources directly from the SVN source repository:
+
+-------------------------------
+mkdir TMP_DIR
+cd TMP_DIR
+svn co http://wpitchoune.net/svnpub/ptask/trunk
+cd trunk
+-------------------------------
+
+Compilation
+~~~~~~~~~~~
+
+-------------------------------
+./configure
+make clean all
+-------------------------------
+
+Installation
+~~~~~~~~~~~~
+
+-------------------------------
+make install
+-------------------------------
+
+Resources
+---------
+
+ * *Home page*: http://wpitchoune.net/ptask.
+ * *RSS feed*: http://wpitchoune.net/blog/category/ptask/feed/.
+ * *Release changes*: link:NEWS.html[NEWS].
+ * *Source tarballs*: http://wpitchoune.net/ptask/files.
+ * *Documentation*: http://wpitchoune.net/ptask/doc.
+
+Contact
+-------
+
+Bugs and comments can be sent to jeanfi@gmail.com.

@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: jeanfi@gmail.com\n"
+"POT-Creation-Date: 2016-05-23 19:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/main.c:56
+#, c-format
+msgid ""
+"Copyright (C) %s jeanfi@gmail.com\n"
+"License GPLv2: GNU GPL version 2 or later <http://www.gnu.org/licenses/old-"
+"licenses/gpl-2.0.html>\n"
+"This is free software: you are free to change and  redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+
+#: src/main.c:67
+#, c-format
+msgid "Usage: %s [OPTION]...\n"
+msgstr ""
+
+#: src/main.c:69
+msgid "ptask is a task management user interface based on taskwarrior."
+msgstr ""
+
+#: src/main.c:73
+msgid "Options:"
+msgstr ""
+
+#: src/main.c:74
+msgid ""
+"  -h, --help          display this help and exit\n"
+"  -v, --version       display version information and exit"
+msgstr ""
+
+#: src/main.c:78
+msgid ""
+"  -f, --force-unsupported-taskwarrior force usage of an unsupported version "
+"of taskwarrior"
+msgstr ""
+
+#: src/main.c:80
+msgid "  -d, --debug=LEVEL   set the debug level, integer between 0 and 3"
+msgstr ""
+
+#: src/main.c:85
+#, c-format
+msgid "Report bugs to: %s\n"
+msgstr ""
+
+#: src/main.c:87
+#, c-format
+msgid "%s home page: <%s>\n"
+msgstr ""
+
+#: src/main.c:120
+msgid ""
+"Error loading tasks, verify that a supported version of taskwarrior is "
+"installed."
+msgstr ""
+
+#: src/main.c:185
+msgid "Enables debug mode."
+msgstr ""
+
+#: src/main.c:188
+msgid "Force usage of an unsupported version of taskwarrior."
+msgstr ""
+
+#: src/main.c:199
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr ""
+
+#: src/main.c:218
+#, c-format
+msgid "Failed to load UI: %s"
+msgstr ""

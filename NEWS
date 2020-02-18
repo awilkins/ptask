@@ -1,0 +1,94 @@
+What's New
+==========
+
+v1.0.0
+------
+ * allowed 2.4.0, 2.4.1 and 2.5 release of taskwarrior.
+ * added keywords in the desktop file.
+ * added a command line option to force usage of an unsupported
+   version of taskwarrior (risk of malfunction like damaging data).
+ * upadted the date of copyrights in source files.
+
+v0.0.9
+------
+ * fixed potential memory leak when failing to convert time to string
+   which is unlikely.
+ * added incremental search (ctrl-shift f) on description and tags.
+ * ctrl-n for new task.
+ * ctrl-r for refresh.
+
+v0.0.8
+------
+ * fixed a critical gtk error when loading the glade file
+   which can also cause a memory corruption.
+ * fixed crash when creating task with a project
+   containing a task with a tag.
+
+v0.0.7
+------
+ * added support of taskwarrior 2.3.0.
+ * added combo box for project in the new task dialog.
+ * disable the removal of recurrent tasks which is freezing ptask
+   because taskwarrior CLI is prompting a confirmation. That's the
+   consequence of the taskwarrior bug TW-638.
+ * display the tags of the selected task.
+
+v0.0.6
+------
+ * added contextal menu item in the task tree: task done.
+ * added start/stop task.
+ * fixed coredump with taskwarrior 2.0.0 when there is not any tasks.
+
+v0.0.5
+------
+
+ * keep focus on project after refresh.
+ * keep focus on task after refresh.
+ * added support of tasks with deleted status.
+ * added urgency column.
+ * implemented the cancel button of the task panel.
+ * added menu.
+ * restore position of vertical/horizontal spliters.
+ * added creation date, due, id, uuid, urgency, and start date in the
+   list of tasks.
+ * popup menu to filter columns of the table of tasks.
+ * allow to change the directory containing the notes.
+ * fixed compilation with gtk+ 3.10 (ignore deprecation of GtkAction).
+
+v0.0.4
+------
+
+ * fixed i18n support.
+ * added --version and --help options.
+ * added manpage.
+ * popup error dialog when .taskrc does not exist.
+ * added --debug.
+ * added taskwarrior version checking (supported version are 2.2.0 and 2.0.0).
+ * added support for taskwarrior 2.2.0 (avoid confirmation query).
+ * added window position and size restore.
+ * added tasks sort column/order restore.
+ * fixed error message displayed when a note does not exist.
+ * new task dialog allow to set description and priority.
+ * added project table to filter the list of tasks.
+ * added application icon.
+ * added remove task button.
+
+v0.0.3
+------
+
+ * fixed window close to terminate the application.
+ * added README.
+ * generated HTML version of README and NEWS files.
+ * added fr translation and i18n support.
+
+v0.0.2
+------
+
+ * added refresh keyboard shortcut (ALT-r).
+ * added new task keyboard shortcut (ALT-n).
+ * renamed gtask to ptask.
+
+v0.0.1
+------
+
+ * Initial release.

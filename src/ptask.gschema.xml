@@ -1,0 +1,58 @@
+<schemalist>
+  <schema id="ptask" path="/apps/ptask/">
+    <key name="window-x" type="i">
+      <default>100</default>
+    </key>
+    <key name="window-y" type="i">
+      <default>100</default>
+    </key>
+    <key name="window-height" type="i">
+      <default>480</default>
+    </key>
+    <key name="window-width" type="i">
+      <default>640</default>
+    </key>
+    <key name="tasks-sort-col" type="i">
+      <default>1</default>
+    </key>
+    <key name="tasks-sort-order" type="i">
+      <default>0</default>
+    </key>
+    <key name="spliter-horizontal-pos" type="i">
+      <default>200</default>
+    </key>
+    <key name="spliter-vertical-pos" type="i">
+      <default>100</default>
+    </key>
+    <key name="tasktree-creation-date-visible" type="b">
+      <default>false</default>
+    </key>
+    <key name="tasktree-id-visible" type="b">
+      <default>false</default>
+    </key>
+    <key name="tasktree-description-visible" type="b">
+      <default>true</default>
+    </key>
+    <key name="tasktree-project-visible" type="b">
+      <default>true</default>
+    </key>
+    <key name="tasktree-uuid-visible" type="b">
+      <default>false</default>
+    </key>
+    <key name="tasktree-priority-visible" type="b">
+      <default>true</default>
+    </key>
+    <key name="tasktree-urgency-visible" type="b">
+      <default>false</default>
+    </key>
+    <key name="tasktree-due-visible" type="b">
+      <default>true</default>
+    </key>
+    <key name="tasktree-start-visible" type="b">
+      <default>false</default>
+    </key>
+    <key name="notes-dir" type="s">
+      <default>''</default>
+    </key>
+  </schema>
+</schemalist>

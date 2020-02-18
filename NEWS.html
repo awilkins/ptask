@@ -1,0 +1,658 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.6.9" />
+<title>What&#8217;s New</title>
+<style type="text/css">
+body {
+    background: #FFFFFF;
+    color: #333333;
+    font-family: Ubuntu,Arial,sans-serif;
+    line-height: 1.6;
+    font-weight: lighter;
+    margin: 1em 2em 2em 2em;
+    padding: 0 0 0 0;
+}
+
+h1 {
+    font-size: 2.813em;
+    margin: 0 0 0.267em 0;
+    padding: 0 0 0 0;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 2em;
+    margin: 0 0 0.375em;
+    padding: 0 0 0 0;
+    font-weight: normal;
+}
+
+h3 {
+    font-size: 1.438em;
+    margin: 0 0 0.522em;
+    padding: 0 0 0 0;
+    font-weight: normal;
+}
+
+h4 {
+    font-size: 1.219em;
+    margin: 0 0 0.615em;
+    padding: 0 0 0 0;
+    font-weight: normal;
+}
+
+h5 {
+    font-size: 1em;
+    margin: 0 0 0.75em;
+    padding: 0 0 0 0;
+    font-weight: bold;
+}
+
+h6 {
+    font-weight: normal;
+    font-size: 0.813em;
+    letter-spacing: 0.1em;
+    margin: 0 0 0.923em;
+    text-transform: uppercase;
+    padding: 0 0 0 0;
+}
+
+li {
+    margin: 0 0 0 1em;
+    line-height: 1.6;
+}
+
+li p {
+    margin: 0 0 0 0;
+}
+
+ul {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+a:link, a:visited {
+    color: #19B6EE;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code, pre, tt {
+    font-family: "Ubuntu Mono","Courier New",Courier,monospace;
+    font-weight: normal;
+    color: #333333;
+}
+
+pre {
+    background: none repeat scroll 0 0 #e0e0e0;
+    border-radius: 4px;
+    padding: 0.5em 0.5em;
+    margin: 0 0 0 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* ASCIIDOC */
+
+div.toclevel2 {
+    margin-left: 1em;
+}
+
+#toctitle {
+    font-size: 1.219em;
+    margin: 0 0 0.615em;
+    padding: 0 0 0 0;
+    font-weight: normal;
+}
+
+#footer {
+    margin: 2em 0 0 0;
+    font-size: 0.8em;
+    font-weight: lighter;
+}
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>What&#8217;s New</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_v1_0_0">v1.0.0</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+allowed 2.4.0, 2.4.1 and 2.5 release of taskwarrior.
+</p>
+</li>
+<li>
+<p>
+added keywords in the desktop file.
+</p>
+</li>
+<li>
+<p>
+added a command line option to force usage of an unsupported
+   version of taskwarrior (risk of malfunction like damaging data).
+</p>
+</li>
+<li>
+<p>
+upadted the date of copyrights in source files.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_v0_0_9">v0.0.9</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+fixed potential memory leak when failing to convert time to string
+   which is unlikely.
+</p>
+</li>
+<li>
+<p>
+added incremental search (ctrl-shift f) on description and tags.
+</p>
+</li>
+<li>
+<p>
+ctrl-n for new task.
+</p>
+</li>
+<li>
+<p>
+ctrl-r for refresh.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_v0_0_8">v0.0.8</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+fixed a critical gtk error when loading the glade file
+   which can also cause a memory corruption.
+</p>
+</li>
+<li>
+<p>
+fixed crash when creating task with a project
+   containing a task with a tag.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_v0_0_7">v0.0.7</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+added support of taskwarrior 2.3.0.
+</p>
+</li>
+<li>
+<p>
+added combo box for project in the new task dialog.
+</p>
+</li>
+<li>
+<p>
+disable the removal of recurrent tasks which is freezing ptask
+   because taskwarrior CLI is prompting a confirmation. That&#8217;s the
+   consequence of the taskwarrior bug TW-638.
+</p>
+</li>
+<li>
+<p>
+display the tags of the selected task.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_v0_0_6">v0.0.6</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+added contextal menu item in the task tree: task done.
+</p>
+</li>
+<li>
+<p>
+added start/stop task.
+</p>
+</li>
+<li>
+<p>
+fixed coredump with taskwarrior 2.0.0 when there is not any tasks.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_v0_0_5">v0.0.5</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+keep focus on project after refresh.
+</p>
+</li>
+<li>
+<p>
+keep focus on task after refresh.
+</p>
+</li>
+<li>
+<p>
+added support of tasks with deleted status.
+</p>
+</li>
+<li>
+<p>
+added urgency column.
+</p>
+</li>
+<li>
+<p>
+implemented the cancel button of the task panel.
+</p>
+</li>
+<li>
+<p>
+added menu.
+</p>
+</li>
+<li>
+<p>
+restore position of vertical/horizontal spliters.
+</p>
+</li>
+<li>
+<p>
+added creation date, due, id, uuid, urgency, and start date in the
+   list of tasks.
+</p>
+</li>
+<li>
+<p>
+popup menu to filter columns of the table of tasks.
+</p>
+</li>
+<li>
+<p>
+allow to change the directory containing the notes.
+</p>
+</li>
+<li>
+<p>
+fixed compilation with gtk+ 3.10 (ignore deprecation of GtkAction).
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_v0_0_4">v0.0.4</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+fixed i18n support.
+</p>
+</li>
+<li>
+<p>
+added --version and --help options.
+</p>
+</li>
+<li>
+<p>
+added manpage.
+</p>
+</li>
+<li>
+<p>
+popup error dialog when .taskrc does not exist.
+</p>
+</li>
+<li>
+<p>
+added --debug.
+</p>
+</li>
+<li>
+<p>
+added taskwarrior version checking (supported version are 2.2.0 and 2.0.0).
+</p>
+</li>
+<li>
+<p>
+added support for taskwarrior 2.2.0 (avoid confirmation query).
+</p>
+</li>
+<li>
+<p>
+added window position and size restore.
+</p>
+</li>
+<li>
+<p>
+added tasks sort column/order restore.
+</p>
+</li>
+<li>
+<p>
+fixed error message displayed when a note does not exist.
+</p>
+</li>
+<li>
+<p>
+new task dialog allow to set description and priority.
+</p>
+</li>
+<li>
+<p>
+added project table to filter the list of tasks.
+</p>
+</li>
+<li>
+<p>
+added application icon.
+</p>
+</li>
+<li>
+<p>
+added remove task button.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_v0_0_3">v0.0.3</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+fixed window close to terminate the application.
+</p>
+</li>
+<li>
+<p>
+added README.
+</p>
+</li>
+<li>
+<p>
+generated HTML version of README and NEWS files.
+</p>
+</li>
+<li>
+<p>
+added fr translation and i18n support.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_v0_0_2">v0.0.2</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+added refresh keyboard shortcut (ALT-r).
+</p>
+</li>
+<li>
+<p>
+added new task keyboard shortcut (ALT-n).
+</p>
+</li>
+<li>
+<p>
+renamed gtask to ptask.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_v0_0_1">v0.0.1</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Initial release.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr /></div>
+<div id="footer">
+<div id="footer-text">
+Last updated
+ 2016-05-24 00:47:37 CEST
+</div>
+</div>
+</body>
+</html>
